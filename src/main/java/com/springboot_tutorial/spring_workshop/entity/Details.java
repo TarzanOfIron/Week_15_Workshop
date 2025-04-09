@@ -19,8 +19,15 @@ public class Details {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false, unique = true)
     private String email;
     private String name;
     private LocalDate birthday;
 
+
+    public Details(String email, String name, LocalDate birthday) {
+        this.email = email;
+        this.name = name;
+        this.birthday = birthday;
+    }
 }

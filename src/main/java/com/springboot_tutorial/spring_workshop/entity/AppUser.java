@@ -18,7 +18,8 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    @Column(nullable = false, unique = true)
+    private String username;
     private String password;
     private LocalDate regDate;
     @OneToOne
@@ -26,4 +27,13 @@ public class AppUser {
     private Details userDetails;
 
 
+    public AppUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        regDate = LocalDate.now();
+    }
 }
