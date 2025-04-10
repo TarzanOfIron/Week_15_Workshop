@@ -32,6 +32,12 @@ public class AppUser {
         this.password = password;
     }
 
+    public AppUser(String username, String password, Details userDetails) {
+        this.username = username;
+        this.password = password;
+        this.userDetails = userDetails;
+    }
+
     @PrePersist
     public void prePersist() {
         regDate = LocalDate.now();

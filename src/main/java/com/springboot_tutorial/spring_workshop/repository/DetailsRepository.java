@@ -12,3 +12,5 @@ public interface DetailsRepository extends CrudRepository<Details, Integer> {
     Details findByNameIgnoreCase(String name);
 
 }
+
+

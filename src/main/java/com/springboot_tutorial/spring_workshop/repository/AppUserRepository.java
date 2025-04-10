@@ -5,13 +5,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Repository
 public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
     AppUser findByUsername(String username);
-    AppUser findByRegDateBetween(LocalDate regDateAfter, LocalDate regDateBefore);
-    AppUser findByUserDetailsId(Integer detailId);
+    Set<AppUser> findByRegDateBetween(LocalDate regDateAfter, LocalDate regDateBefore);
+    AppUser findByUserDetails_Id(Integer detailId);
     AppUser findByUserDetailsEmailIgnoreCase(String email);
 
 
