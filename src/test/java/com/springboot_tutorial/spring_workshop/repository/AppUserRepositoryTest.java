@@ -3,6 +3,7 @@ package com.springboot_tutorial.spring_workshop.repository;
 import com.springboot_tutorial.spring_workshop.entity.AppUser;
 import com.springboot_tutorial.spring_workshop.entity.Details;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,22 +19,26 @@ public class AppUserRepositoryTest {
     @Autowired
     DetailsRepository detailsRepository;
 
+    AppUser appUser;
+
+    @BeforeEach
+    void setUp() {
+        appUser = appUserRepository.save(new AppUser("John", "Doe"));
+    }
+
     @Test
     void saveStudent() {
-        AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Assertions.assertTrue(appUserRepository.findById(appUser.getId()).isPresent());
     }
 
 
     @Test
     void findByUsername() {
-        AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Assertions.assertEquals(appUser, appUserRepository.findByUsername("John"));
     }
 
     @Test
     void findByRegDateBetween() {
-        AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         HashSet<AppUser> appUsers = new HashSet<>();
         appUsers.add(appUser);
         HashSet<AppUser> appUsersFromFindMethod = new HashSet<>(appUserRepository.findByRegDateBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1)));
@@ -45,14 +50,14 @@ public class AppUserRepositoryTest {
     @Test
     void findByUserDetailsId() {
         Details details = detailsRepository.save(new Details("email", "name", LocalDate.now().minusYears(15).minusDays(2)));
-        AppUser appUser = appUserRepository.save(new AppUser("John", "Doe", details));
+        appUser.setUserDetails(details);
         Assertions.assertEquals(appUser, appUserRepository.findByUserDetails_Id(details.getId()));
     }
 
     @Test
     void findByUserDetailsEmailIgnoreCase() {
         Details details = detailsRepository.save(new Details("email", "name", LocalDate.now().minusYears(15).minusDays(2)));
-        AppUser appUser = appUserRepository.save(new AppUser("John", "Doe", details));
+        appUser.setUserDetails(details);
         Assertions.assertEquals(appUser, appUserRepository.findByUserDetailsEmailIgnoreCase("email"));
     }
 }
