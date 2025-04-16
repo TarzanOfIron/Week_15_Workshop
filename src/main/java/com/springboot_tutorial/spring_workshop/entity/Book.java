@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +22,11 @@ public class Book {
     private String isbn;
     private String title;
     private int maxLoanDays;
+    @ManyToMany
+    @JoinTable(
+            name = "Books_Authors",
+            inverseJoinColumns = @JoinColumn(name = "book_id"),
+            joinColumns = @JoinColumn(name = "Author_id")
+    )
+    private Set<Author> authors;
 }
