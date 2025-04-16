@@ -1,10 +1,7 @@
 package com.springboot_tutorial.spring_workshop.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +21,13 @@ public class BookLoan {
     private LocalDate loanDate;
     private LocalDate dueDate;
     private boolean returned;
+
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
     private AppUser borrower;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
     private Book book;
 
 
