@@ -11,7 +11,7 @@ import java.util.Set;
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
     Optional<Book> findByIsbnIgnoreCase(String isbn);
-    Optional<Book> findByTitleContains(String title);
+    Set<Book> findByTitleContains(String title);
     Set<Book> findByMaxLoanDaysLessThan(int maxLoanDays);
 
 
