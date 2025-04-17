@@ -30,9 +30,11 @@ public class BookLoan {
     @JoinColumn(name = "book_id")
     private Book book;
 
-
-
-
-
-
+    public BookLoan(LocalDate loanDate, LocalDate dueDate, boolean returned, AppUser borrower, Book book) {
+        this.loanDate = loanDate;
+        this.dueDate = dueDate;
+        this.returned = returned;
+        this.borrower = borrower;
+        this.book = book;
+    }
 }

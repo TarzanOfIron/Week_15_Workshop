@@ -16,7 +16,7 @@ import java.util.Set;
 public interface BookLoanRepository extends CrudRepository<BookLoan, Integer> {
 
     Optional<BookLoan> findByBorrowerId(Integer borrowerId);
-    BookLoan findByBookId(Integer bookId);
+    Optional<BookLoan> findByBookId(Integer bookId);
     Set<BookLoan> findBookLoansByReturnedFalse();
 
     @Query("SELECT bl FROM BookLoan bl WHERE bl.dueDate < :today AND bl.returned = false")

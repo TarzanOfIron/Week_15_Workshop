@@ -2,6 +2,7 @@ package com.springboot_tutorial.spring_workshop.repository;
 
 import com.springboot_tutorial.spring_workshop.entity.Author;
 import com.springboot_tutorial.spring_workshop.entity.Book;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,8 @@ public class AuthorRepositoryTest {
     AuthorRepository authorRepository;
     @Autowired
     BookRepository bookRepository;
+    @Autowired
+    private EntityManager entityManager;
 
     Author author;
 
@@ -73,7 +76,8 @@ public class AuthorRepositoryTest {
     @Test
     void updateNameById() {
         author = authorRepository.save(new Author("John", "Doe"));
-        author.setFirstName("Adam"); // this automatically updates by it self, no need for the custom method?
+        authorRepository.updateNameById(1, "Adam", "Smith");
+        entityManager.clear();
         Assertions.assertEquals("Adam", authorRepository.findById(1).get().getFirstName());
 
 
