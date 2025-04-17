@@ -22,11 +22,22 @@ public class Book {
     private String isbn;
     private String title;
     private int maxLoanDays;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "Books_Authors",
             inverseJoinColumns = @JoinColumn(name = "book_id"),
             joinColumns = @JoinColumn(name = "Author_id")
     )
     private Set<Author> authors;
+
+
+    public Book(String isbn, String title, int maxLoanDays) {
+        this.isbn = isbn;
+        this.title = title;
+        this.maxLoanDays = maxLoanDays;
+    }
+
+    public void addAuthor(Author author) {
+        authors.add(author);
+    }
 }

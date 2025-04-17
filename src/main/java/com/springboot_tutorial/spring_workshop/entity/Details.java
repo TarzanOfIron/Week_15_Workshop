@@ -30,4 +30,5 @@ public class Details {
         this.name = name;
         this.birthday = birthday;
     }
+
 }

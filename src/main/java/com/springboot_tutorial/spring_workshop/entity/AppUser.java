@@ -22,7 +22,7 @@ public class AppUser {
     private String username;
     private String password;
     private LocalDate regDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "details_id")
     private Details userDetails;
 
@@ -33,8 +33,7 @@ public class AppUser {
     }
 
     public AppUser(String username, String password, Details userDetails) {
-        this.username = username;
-        this.password = password;
+        this(username, password);
         this.userDetails = userDetails;
     }
 
