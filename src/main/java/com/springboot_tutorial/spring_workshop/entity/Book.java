@@ -37,6 +37,11 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
     }
 
+    public Book(String isbn, String title, int maxLoanDays, Set<Author> authors) {
+        this(isbn, title, maxLoanDays);
+        this.authors = authors;
+    }
+
     public void addAuthor(Author author) {
         authors.add(author);
     }
