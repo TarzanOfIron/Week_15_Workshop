@@ -35,12 +35,13 @@ public class AppCommandLineRunner implements CommandLineRunner {
                 book);
 
 
-        appUser.addBookLoan(bookLoan);
-
-        bookLoan = bookLoanRepository.save(bookLoan);
-
+        appUser = appUserRepository.save(appUser);
+        System.out.println(appUser);
+        System.out.println("=====================================================");
+        System.out.println("=====================================================");
 
 
 
     }
+
 }

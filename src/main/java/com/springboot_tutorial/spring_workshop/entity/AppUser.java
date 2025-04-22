@@ -11,8 +11,8 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(exclude = "bookLoans")
+@ToString(exclude = "bookLoans")
 
 @Entity
 //@Table(name = "app_user")
