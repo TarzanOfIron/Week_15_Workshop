@@ -58,6 +58,4 @@ public class AppUser {
         bookLoan.setBorrower(this);
     }
 
-    
-
 }

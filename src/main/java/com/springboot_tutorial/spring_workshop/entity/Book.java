@@ -42,7 +42,15 @@ public class Book {
         this.authors = authors;
     }
 
+    // Methods
+
     public void addAuthor(Author author) {
         authors.add(author);
+        author.getWrittenBooks().add(this);
+    }
+
+    public void removeAuthor(Author author) {
+        authors.remove(author);
+        author.getWrittenBooks().remove(this);
     }
 }
