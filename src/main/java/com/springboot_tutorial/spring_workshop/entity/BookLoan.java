@@ -23,7 +23,7 @@ public class BookLoan {
     private boolean returned;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "appUser_id")
+    @JoinColumn(name = "borrower")
     private AppUser borrower;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

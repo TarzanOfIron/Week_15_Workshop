@@ -30,8 +30,7 @@ public class AppUser {
     @JoinColumn(name = "details_id")
     private Details userDetails;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "bookLoan_id")
+    @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<BookLoan> bookLoans = new HashSet<>();
 
 

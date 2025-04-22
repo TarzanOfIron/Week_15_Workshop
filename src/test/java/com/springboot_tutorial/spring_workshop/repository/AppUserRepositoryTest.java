@@ -60,4 +60,5 @@ public class AppUserRepositoryTest {
         appUser.setUserDetails(details);
         Assertions.assertEquals(appUser, appUserRepository.findByUserDetailsEmailIgnoreCase("email"));
     }
+
 }
