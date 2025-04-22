@@ -2,15 +2,16 @@ package com.springboot_tutorial.spring_workshop.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString(exclude = {"borrower", "book"})
 
 @Entity
 public class BookLoan {
