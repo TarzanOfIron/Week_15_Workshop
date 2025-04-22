@@ -2,15 +2,17 @@ package com.springboot_tutorial.spring_workshop.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "authors")
+@ToString(exclude = "authors")
 
 @Entity
 public class Book {
@@ -22,13 +24,13 @@ public class Book {
     private String isbn;
     private String title;
     private int maxLoanDays;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "Books_Authors",
             inverseJoinColumns = @JoinColumn(name = "book_id"),
             joinColumns = @JoinColumn(name = "Author_id")
     )
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
 
 
     public Book(String isbn, String title, int maxLoanDays) {

@@ -1,15 +1,17 @@
 package com.springboot_tutorial.spring_workshop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "writtenBooks")
+@ToString(exclude = "writtenBooks")
 
 
 @Entity
@@ -21,8 +23,8 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Set<Book> writtenBooks;
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Set<Book> writtenBooks = new HashSet<>();
 
 
     public Author(String firstName, String lastName) {
