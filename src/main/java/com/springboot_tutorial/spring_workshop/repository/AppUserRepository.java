@@ -17,4 +17,5 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
 
 
+
 }
