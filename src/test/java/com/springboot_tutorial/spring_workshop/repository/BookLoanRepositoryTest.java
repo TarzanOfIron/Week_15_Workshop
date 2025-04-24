@@ -29,8 +29,6 @@ public class BookLoanRepositoryTest {
         AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Book book = new Book("isbn", "title_1", 25);
         BookLoan bookLoan = bookLoanRepository.save(new BookLoan(
-                LocalDate.now(),
-                LocalDate.now().plusDays(10),
                 false,
                 appUser,
                 book ));
@@ -43,8 +41,6 @@ public class BookLoanRepositoryTest {
         AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Book book = new Book("isbn", "title_1", 25);
         BookLoan bookLoan = bookLoanRepository.save(new BookLoan(
-                LocalDate.now(),
-                LocalDate.now().plusDays(10),
                 false,
                 appUser,
                 book ));
@@ -57,8 +53,6 @@ public class BookLoanRepositoryTest {
         AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Book book = new Book("isbn", "title_1", 25);
         BookLoan bookLoan = bookLoanRepository.save(new BookLoan(
-                LocalDate.now(),
-                LocalDate.now().plusDays(10),
                 false,
                 appUser,
                 book ));
@@ -74,8 +68,6 @@ public class BookLoanRepositoryTest {
         AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Book book = new Book("isbn", "title_1", 25);
         BookLoan bookLoan = bookLoanRepository.save(new BookLoan(
-                LocalDate.now().minusDays(25),
-                LocalDate.now().minusDays(10),
                 false,
                 appUser,
                 book ));
@@ -91,8 +83,6 @@ public class BookLoanRepositoryTest {
         AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Book book = new Book("isbn", "title_1", 25);
         BookLoan bookLoan = bookLoanRepository.save(new BookLoan(
-                LocalDate.now(),
-                LocalDate.now().plusDays(15),
                 false,
                 appUser,
                 book ));
@@ -110,8 +100,6 @@ public class BookLoanRepositoryTest {
         AppUser appUser = appUserRepository.save(new AppUser("John", "Doe"));
         Book book = new Book("isbn", "title_1", 25);
         BookLoan bookLoan = bookLoanRepository.save(new BookLoan(
-                LocalDate.now(),
-                LocalDate.now().plusDays(15),
                 false,
                 appUser,
                 book ));

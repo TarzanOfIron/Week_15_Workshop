@@ -29,13 +29,12 @@ public class AppCommandLineRunner implements CommandLineRunner {
         AppUser appUser = new AppUser("John", "Doe", new Details("email", "name", LocalDate.now().minusYears(15)));
         Book book = new Book("isbn", "Title", 15, new HashSet<>());
         BookLoan bookLoan = new BookLoan(
-                LocalDate.now().minusDays(1),
-                LocalDate.now().plusDays(1),
                 false,
                 null,
                 book);
 
 
+        appUser.addBookLoan(bookLoan);
         appUser = appUserRepository.save(appUser);
         System.out.println(appUser);
         System.out.println("=====================================================");
@@ -45,8 +44,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
         //authorRepository.save(author);
         book.addAuthor(author);
         bookRepository.save(book);
-        bookRepository.findById(1).get().getAuthors().forEach(System.out::println);
-        authorRepository.findById(1).get().getWrittenBooks().forEach(System.out::println);
+
     }
 
 }

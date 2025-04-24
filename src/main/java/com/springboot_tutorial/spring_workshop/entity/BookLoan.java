@@ -31,11 +31,15 @@ public class BookLoan {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    public BookLoan(LocalDate loanDate, LocalDate dueDate, boolean returned, AppUser borrower, Book book) {
-        this.loanDate = loanDate;
-        this.dueDate = dueDate;
+    public BookLoan( boolean returned, AppUser borrower, Book book) {
         this.returned = returned;
         this.borrower = borrower;
         this.book = book;
+    }
+
+    @PrePersist
+    private void prePersist() {
+        this.loanDate = LocalDate.now();
+        this.dueDate = LocalDate.now().plusDays(book.getMaxLoanDays());
     }
 }
