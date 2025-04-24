@@ -23,8 +23,6 @@ public class AppUserTest {
         appUserRepository.save(appUser);
         Book book = new Book("title", "author", 15, null);
         BookLoan bookLoan = new BookLoan(
-                LocalDate.now().minusDays(1),
-                LocalDate.now().plusDays(1),
                 false,
                 appUser,
                 book);

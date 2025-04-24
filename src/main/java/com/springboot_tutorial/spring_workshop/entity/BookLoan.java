@@ -27,7 +27,7 @@ public class BookLoan {
     @JoinColumn(name = "borrower")
     private AppUser borrower;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)//, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book;
 
@@ -42,4 +42,13 @@ public class BookLoan {
         this.loanDate = LocalDate.now();
         this.dueDate = LocalDate.now().plusDays(book.getMaxLoanDays());
     }
+
+//    public void setBook(Book book) {
+//        if (!book.isAvailable()) {
+//            System.out.println("Book is not available");
+//            return;
+//        }
+//        this.book = book;
+//
+//    }
 }

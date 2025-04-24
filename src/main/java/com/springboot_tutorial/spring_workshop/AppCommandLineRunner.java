@@ -28,22 +28,36 @@ public class AppCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         AppUser appUser = new AppUser("John", "Doe", new Details("email", "name", LocalDate.now().minusYears(15)));
         Book book = new Book("isbn", "Title", 15, new HashSet<>());
+        bookRepository.save(book);
+        Author author = new Author("Johan", "Dadd");
+        book.addAuthor(author);
         BookLoan bookLoan = new BookLoan(
                 false,
                 null,
                 book);
 
 
-        appUser.addBookLoan(bookLoan);
+        appUser.addBookLoan(bookLoan, bookRepository);
         appUser = appUserRepository.save(appUser);
         System.out.println(appUser);
         System.out.println("=====================================================");
         System.out.println("=====================================================");
 
-        Author author = new Author("Johan", "Dadd");
         //authorRepository.save(author);
-        book.addAuthor(author);
-        bookRepository.save(book);
+
+        appUser.getBookLoans().forEach(System.out::println);
+        System.out.println(bookRepository.findById(1).get().isAvailable());
+
+        BookLoan bookLoan2 = new BookLoan(
+                false,
+                null,
+                book);
+
+        appUser.addBookLoan(bookLoan2, bookRepository);
+        appUser.removeBookLoan(bookLoan, bookRepository);
+        appUser.addBookLoan(bookLoan2, bookRepository);
+        appUser.getBookLoans().forEach(System.out::println);
+
 
     }
 

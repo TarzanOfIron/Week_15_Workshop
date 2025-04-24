@@ -24,6 +24,7 @@ public class Book {
     private String isbn;
     private String title;
     private int maxLoanDays;
+    private boolean available;
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "Books_Authors",
@@ -31,6 +32,12 @@ public class Book {
             joinColumns = @JoinColumn(name = "Author_id")
     )
     private Set<Author> authors = new HashSet<>();
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.available = true;
+    }
 
 
     public Book(String isbn, String title, int maxLoanDays) {

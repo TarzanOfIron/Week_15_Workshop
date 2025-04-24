@@ -1,5 +1,6 @@
 package com.springboot_tutorial.spring_workshop.entity;
 
+import com.springboot_tutorial.spring_workshop.repository.BookRepository;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -52,9 +53,22 @@ public class AppUser {
 
     // Methods
 
-    public void addBookLoan(BookLoan bookLoan) {
+    public void addBookLoan(BookLoan bookLoan, BookRepository bookRepository) {
+        if (bookLoan.getBook() == null || !bookLoan.getBook().isAvailable()) {
+            System.out.println("Book is not available");
+            return;
+        }
         bookLoans.add(bookLoan);
         bookLoan.setBorrower(this);
+        bookLoan.getBook().setAvailable(false);
+        bookRepository.save(bookLoan.getBook());
+    }
+
+    public void removeBookLoan(BookLoan bookLoan, BookRepository bookRepository) {
+        bookLoans.remove(bookLoan);
+        bookLoan.setBorrower(null);
+        bookLoan.getBook().setAvailable(true);
+        bookRepository.save(bookLoan.getBook());
     }
 
 }
